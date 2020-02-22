@@ -26,8 +26,8 @@ class HomePage extends React.Component {
                 {books.items &&
                     <ul>
                         {books.items.map((book, index) =>
-                            <li key={book.id}>
-                                {book.id}
+                            <li key={book.ID}>
+                                {book.title}
                                 {
                                     book.deleting ? <em> - Deleting...</em>
                                     : book.deleteError ? <span className="text-danger"> - ERROR: {book.deleteError}</span>

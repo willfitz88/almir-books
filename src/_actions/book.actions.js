@@ -14,11 +14,11 @@ function create(book) {
     return dispatch => {
         dispatch(request(book));
 
-        bookService.register(book)
+        bookService.create(book)
             .then(
                 book => { 
                     dispatch(success());
-                    history.push('/login');
+                   // history.push('/login');
                     dispatch(alertActions.success('Book Added!'));
                 },
                 error => {
@@ -28,9 +28,9 @@ function create(book) {
             );
     };
 
-    function request(book) { return { type: bookConstants.REGISTER_REQUEST, book } }
-    function success(book) { return { type: bookConstants.REGISTER_SUCCESS, book } }
-    function failure(error) { return { type: bookConstants.REGISTER_FAILURE, error } }
+    function request(book) { return { type: bookConstants.CREATE_REQUEST, book } }
+    function success(book) { return { type: bookConstants.CREATE_SUCCESS, book } }
+    function failure(error) { return { type: bookConstants.CREATE_FAILURE, error } }
 }
 
 function getAll() {

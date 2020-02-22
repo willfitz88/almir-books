@@ -17,6 +17,19 @@ export function books(state = {}, action) {
       return { 
         error: action.error
       };
+    
+    case bookConstants.CREATE_REQUEST:
+      console.log("CREATE_REQUEST");
+      return {
+        registering: true
+      };
+    case bookConstants.CREATE_SUCCESS:
+      console.log("CREATE_SUCCESS");
+      return {};
+    case bookConstants.CREATE_FAILURE:
+      console.log("CREATE_FAILURE");
+      return {};
+      
     case bookConstants.DELETE_REQUEST:
       // add 'deleting:true' property to book being deleted
       return {

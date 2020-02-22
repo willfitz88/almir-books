@@ -32,8 +32,10 @@ function create(book) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        headers: authHeader(),
         body: JSON.stringify(book)
     };
+    console.log(JSON.stringify(book));
 
     return fetch(`${config.apiUrl}/api/books.php?create`, requestOptions).then(handleResponse);
 }
