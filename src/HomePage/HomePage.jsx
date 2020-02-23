@@ -73,6 +73,9 @@ class HomePage extends React.Component {
                             </tbody>
                         </table>
                     }
+                    {!books.items &&
+                     <p>No Books available <Link to="/add-book" className="btn btn-sm btn-primary float-right">Add Book</Link></p>
+                    }
                     
                 </div>
             </div>
