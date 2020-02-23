@@ -74,3 +74,4 @@ CREATE TABLE IF NOT EXISTS `Users` (
 * Login failure feedback- Provide better UX by informing the user via a toast message that login has failed. 
 * Deleting a record - Implement animation when user deletes a book ( row to fade away ) - provide "Are you sure?" dialog.
 * Allow ordering or records - new books should appear on top by default.
+* Better UX via presenting "create" and "edit" forms in Model dialogs.
