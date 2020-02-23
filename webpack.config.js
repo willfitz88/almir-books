@@ -22,7 +22,8 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://almir.superhomepages.com/backend/'
+            //apiUrl: 'http://almir.superhomepages.com/backend/'
+            apiUrl: 'http://localhost/8080/'
         })
     }
 }

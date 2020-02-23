@@ -20,7 +20,7 @@ function create(book) {
             .then(
                 book => { 
                     dispatch(success());
-                   // history.push('/login');
+                    history.push('/');
                     dispatch(alertActions.success('Book Added!'));
                 },
                 error => {
@@ -43,7 +43,7 @@ function update(book) {
             .then(
                 book => { 
                     dispatch(success());
-                   // history.push('/login');
+                    history.push('/');
                     dispatch(alertActions.success('Book Updated!'));
                 },
                 error => {

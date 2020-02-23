@@ -24,7 +24,7 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
 $arr = explode(" ", $authHeader);
 $jwt = $arr[1];
-
+//$jwt = true;
 
 if($jwt){
     switch ($requestMethod) {
