@@ -11,6 +11,7 @@ class EditBookPage extends React.Component {
         // set existing book info to prepopulate fields
         this.state = {
             book: {
+                id: this.props.location.state.detail.ID,
                 title: this.props.location.state.detail.title,
                 author: this.props.location.state.detail.author,
                 ISBN: this.props.location.state.detail.ISBN
@@ -24,7 +25,6 @@ class EditBookPage extends React.Component {
 
     componentDidMount() {
        
-
     }
 
     handleChange(event) {
@@ -32,7 +32,6 @@ class EditBookPage extends React.Component {
         const { book } = this.state;
         this.setState({
             book: {
-                id: this.props.match.params.bookId,
                 ...book,
                 [name]: value
             }

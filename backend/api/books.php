@@ -23,8 +23,8 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
 $arr = explode(" ", $authHeader);
-//$jwt = $arr[1];
-$jwt = true;
+$jwt = $arr[1];
+
 
 if($jwt){
     switch ($requestMethod) {
@@ -49,6 +49,15 @@ if($jwt){
             echo "ERROR: no request method";
     }
 }
+else{
+    // no valid JWT
+    //http_response_code(401);
+    echo json_encode(array(
+        "message" => "Access denied.",
+        "error" => $e->getMessage()
+    ));
+}
+
 
 function getAllBooks($conn) {
     

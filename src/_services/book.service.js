@@ -9,7 +9,6 @@ export const bookService = {
     delete: _delete
 };
 
-
 function getAll() {
     const requestOptions = {
         method: 'GET',
@@ -24,7 +23,7 @@ function getById(id) {
         method: 'GET',
         headers: authHeader()
     };
-    console.log("get one book"); 
+    console.log("get one book");
 
     return fetch(`${config.apiUrl}/api/books.php?id=${id}`, requestOptions).then(handleResponse);
 }
