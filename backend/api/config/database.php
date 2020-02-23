@@ -2,7 +2,8 @@
 // used to get mysql database connection
 class DatabaseService{
 
-    private $db_host = "mysql4316.cp.blacknight.com";
+    //private $db_host = "mysql4316.cp.blacknight.com";
+    private $db_host = "mysql4316int.cp.blacknight.com";
     private $db_name = "db1427163_almirtest";
     private $db_user = "u1427163_altest";
     private $db_password = "C9BK3lRA";

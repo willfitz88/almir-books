@@ -24,6 +24,7 @@ function getById(id) {
         method: 'GET',
         headers: authHeader()
     };
+    console.log("get one book"); 
 
     return fetch(`${config.apiUrl}/api/books.php?id=${id}`, requestOptions).then(handleResponse);
 }
@@ -31,13 +32,12 @@ function getById(id) {
 function create(book) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        headers: authHeader(),
+        headers: { ...authHeader(), 'Content-Type': 'application/json'  },
         body: JSON.stringify(book)
     };
     console.log(JSON.stringify(book));
 
-    return fetch(`${config.apiUrl}/api/books.php?create`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/api/books.php`, requestOptions).then(handleResponse);
 }
 
 function update(book) {
@@ -46,8 +46,8 @@ function update(book) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(book)
     };
-
-    return fetch(`${config.apiUrl}/books?id=${book.id}`, requestOptions).then(handleResponse);;
+    console.log(JSON.stringify(book));
+    return fetch(`${config.apiUrl}api/books.php?id=${book.id}`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -57,7 +57,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/books?id=${id}`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}api/books.php?id=${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -68,8 +68,8 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 //logout();
-                //localStorage.removeItem('user');
-                //window.location.reload(true);
+                localStorage.removeItem('user');
+                window.location.reload(true);
             }
             
             const error = (data && data.message) || response.statusText;

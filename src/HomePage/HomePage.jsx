@@ -17,29 +17,65 @@ class HomePage extends React.Component {
     render() {
         const { user, books } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstname}!</h1>
-                <p>You're logged in with React!!</p>
-                <h3>All books:</h3>
-                {books.loading && <em>Loading books...</em>}
-                {books.error && <span className="text-danger">ERROR: {books.error}</span>}
-                {books.items &&
-                    <ul>
-                        {books.items.map((book, index) =>
-                            <li key={book.ID}>
-                                {book.title}
-                                {
-                                    book.deleting ? <em> - Deleting...</em>
-                                    : book.deleteError ? <span className="text-danger"> - ERROR: {book.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteBook(book.id)}>Delete</a></span>
-                                }
-                            </li>
-                        )}
-                    </ul>
-                }
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
+            <div>
+            <div className="row justify-content-between">
+                <div className="col-12 mb-4">
+                    <h1>Hi {user.firstname}!</h1>
+                    <p>You're logged in to Almir Books :) <Link to="/login">Logout</Link></p>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    
+                    <h3>All books:</h3>
+                    {books.loading &&
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    }
+                    {books.error && <span className="text-danger">ERROR: {books.error}</span>}
+                    {books.items &&
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col"><Link to="/add-book" className="btn btn-sm btn-primary float-right">Add Book</Link></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {books.items.map((book, index) =>
+                                    <tr key={book.ID}>
+                                        <th scope="row">{book.ID}</th>
+                                        <td>{book.title}</td>
+                                        <td>{book.author}</td>
+                                        <td>{book.ISBN}</td>
+                                        <td className="text-right">
+                                        {<a data-toggle="dropdown" className="btn btn-sm btn-light" aria-haspopup="true" aria-expanded="false"><i className="fas fa-ellipsis-h"></i></a>}
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <Link className="dropdown-item" 
+                                                  to={{
+                                                    pathname: '/edit-book',
+                                                    state: { detail: book }
+                                                    }}> Edit </Link>
+                                            {
+                                                book.deleting ? <em> - Deleting...</em>
+                                                : book.deleteError ? <span className="text-danger"> - ERROR: {book.deleteError}</span>
+                                                : <a className="dropdown-item" onClick={this.handleDeleteBook(book.ID)}>Delete</a>
+                                            }
+                                        </div>
+                                            
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    }
+                    
+                </div>
+            </div>
             </div>
         );
     }

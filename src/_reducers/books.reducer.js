@@ -18,6 +18,23 @@ export function books(state = {}, action) {
         error: action.error
       };
     
+    case bookConstants.GETONE_REQUEST:
+      console.log("GETONE_REQUEST1");
+      return {
+        loading: true
+      };
+    case bookConstants.GETONE_SUCCESS:
+      console.log("GETONE_SUCCESS1");
+      return {
+        items: action.books
+      };
+    case bookConstants.GETONE_FAILURE:
+      console.log("GETONE_FAILURE1");
+      return { 
+        error: action.error
+      };
+      
+    
     case bookConstants.CREATE_REQUEST:
       console.log("CREATE_REQUEST");
       return {
@@ -29,13 +46,25 @@ export function books(state = {}, action) {
     case bookConstants.CREATE_FAILURE:
       console.log("CREATE_FAILURE");
       return {};
+    
+    case bookConstants.UPDATE_REQUEST:
+      console.log("UPDATE_REQUEST");
+      return {
+        updating: true
+      };
+    case bookConstants.CREATE_SUCCESS:
+      console.log("UPDATE_SUCCESS");
+      return {};
+    case bookConstants.CREATE_FAILURE:
+      console.log("UPDATE_FAILURE");
+      return {};
       
     case bookConstants.DELETE_REQUEST:
       // add 'deleting:true' property to book being deleted
       return {
         ...state,
         items: state.items.map(book =>
-          book.id === action.id
+          book.ID === action.id
             ? { ...book, deleting: true }
             : book
         )
@@ -43,7 +72,7 @@ export function books(state = {}, action) {
     case bookConstants.DELETE_SUCCESS:
       // remove deleted book from state
       return {
-        items: state.items.filter(book => book.id !== action.id)
+        items: state.items.filter(book => book.ID !== action.id)
       };
     case bookConstants.DELETE_FAILURE:
       // remove 'deleting:true' property and add 'deleteError:[error]' property to book 
